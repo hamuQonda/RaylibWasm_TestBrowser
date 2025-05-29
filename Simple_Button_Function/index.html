@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Simple Button Function</title>
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        canvas {
+            background-color: #000;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const aspectWidth = 800;
+        const aspectHeight = 600;
+        const aspectRatio = aspectWidth / aspectHeight;
+
+        var Module = {
+        canvas: (function () {
+        const canvas = document.createElement('canvas');
+        document.body.appendChild(canvas);
+
+        function resizeCanvas() {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        let newWidth = windowWidth;
+        let newHeight = windowWidth / aspectRatio;
+
+        if (newHeight > windowHeight) {
+        newHeight = windowHeight;
+        newWidth = windowHeight * aspectRatio;
+        }
+
+        canvas.style.width = `${newWidth}px`;
+        canvas.style.height = `${newHeight}px`;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
+
+        return canvas;
+        })()
+        };
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
